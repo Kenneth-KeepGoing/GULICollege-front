@@ -39,7 +39,7 @@ export default{
   updateById(teacher) {
     return request({
       url: '/admin/edu/teacher/update',
-      method: 'put',
+      method: 'post',
       data: teacher
     })
   }
