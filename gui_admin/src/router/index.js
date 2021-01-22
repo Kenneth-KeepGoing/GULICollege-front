@@ -29,8 +29,7 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    name: '主页',
-    meta: { title: '主页' },
+    name: 'Dashboard',
     hidden: true,
     children: [{
       path: 'dashboard',

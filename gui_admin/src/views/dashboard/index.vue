@@ -10,6 +10,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Dashboard',
+  meta: { title: '讲师管理' },
   computed: {
     ...mapGetters([
       'name',
