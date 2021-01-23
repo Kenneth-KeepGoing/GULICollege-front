@@ -3,7 +3,14 @@
     <!--查询表单-->
     <el-form :inline="true">
       <el-form-item>
-        <el-input v-model="searchObj.name" placeholder="讲师"/>
+        <!-- <el-input v-model="searchObj.name" placeholder="讲师名" /> -->
+        <el-autocomplete
+          v-model="searchObj.name"
+          :fetch-suggestions="querySearch"
+          :trigger-on-focus="false"
+          class="inline-input"
+          placeholder="讲师"
+          value-key="name"/>
       </el-form-item>
       <el-form-item>
         <el-select v-model="searchObj.level" clearable placeholder="头衔">
@@ -26,10 +33,12 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" @click="fetchData()">查询</el-button>
         <el-button type="default" @click="resetData()">清空</el-button>
+        <el-button type="danger" icon="el-icon-delete" @click="batchRemove()">批量删除</el-button>
       </el-form-item>
     </el-form>
     <!-- 表格 -->
-    <el-table :data="list" :header-cell-style="{textAlign: 'center'}" border stripe>
+    <el-table :data="list" :header-cell-style="{textAlign: 'center'}" border stripe @selection-change="handleSelectionChange">
+      <el-table-column type="selection"/>
       <el-table-column
         label="#"
         width="50">
@@ -86,7 +95,8 @@ export default {
       total: 0, // 数据总数
       page: 1, // 页码
       limit: 5, // 每页数据量
-      searchObj: {} // 查询对象
+      searchObj: {}, // 查询对象
+      multipleSelection: []
     }
   },
   created() {
@@ -133,6 +143,46 @@ export default {
         if (error === 'cancel') {
           this.$message.info('取消删除')
         }
+      })
+    },
+    // 批量删除
+    batchRemove() {
+      console.log('removeRows......')
+      if (this.multipleSelection.length === 0) {
+        this.$message.warning('请选择要删除的记录！')
+        return
+      }
+      this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 点击确定，远程调用ajax
+        // 遍历selection，将id取出放入id列表
+        var idList = []
+        this.multipleSelection.forEach(item => {
+          idList.push(item.id)
+        })
+        // 调用api
+        return teacherApi.batchRemove(idList)
+      }).then((response) => {
+        this.fetchData()
+        this.$message.success(response.message)
+      }).catch(error => {
+        if (error === 'cancel') {
+          this.$message.info('取消删除')
+        }
+      })
+    },
+    // 当多选选项发生变化的时候调用
+    handleSelectionChange(selection) {
+      console.log(selection)
+      this.multipleSelection = selection
+    },
+    querySearch(queryString, callback) {
+      console.log(queryString)
+      teacherApi.selectNameListByKey(queryString).then(response => {
+        callback(response.data.nameList)
       })
     }
   }

@@ -42,5 +42,18 @@ export default{
       method: 'post',
       data: teacher
     })
+  },
+  batchRemove(idList) {
+    return request({
+      url: '/admin/edu/teacher/batchRemove',
+      method: 'delete',
+      data: idList
+    })
+  },
+  selectNameListByKey(key) {
+    return request({
+      url: `/admin/edu/teacher/list/name/${key}`,
+      method: 'get'
+    })
   }
 }
