@@ -48,7 +48,7 @@
       </el-table-column>
       <el-table-column label="头像" width="100" align="center">
         <template slot-scope="scope">
-          <img :src="scope.row.avatar" class="user-avatar " style="width:50px;height:50px">
+          <img :src="scope.row.avatar" alt="scope.row.avatar" style="width:50px;height:50px">
         </template>
       </el-table-column>
       <el-table-column prop="name" label="名称" width="80" align="center"/>
