@@ -38,12 +38,12 @@
     </el-form>
     <!-- 表格 -->
     <el-table :data="list" :header-cell-style="{textAlign: 'center'}" border stripe @selection-change="handleSelectionChange">
-      <el-table-column type="selection"/>
+      <el-table-column type="selection" align="center"/>
       <el-table-column
         label="#"
         width="50">
         <template slot-scope="scope" >
-          {{ (page - 1) * limit + scope.$index + 1 }}
+          <p align="center">{{ (page - 1) * limit + scope.$index + 1 }}</p>
         </template>
       </el-table-column>
       <el-table-column label="头像" width="100" align="center">
