@@ -13,7 +13,7 @@
         <p>
           {{ chapter.title }}
           <span class="acts">
-            <el-button type="text">添加课时</el-button>
+            <el-button type="text" @click="addVideo(chapter.id)">添加课时</el-button>
             <el-button type="text" @click="editChapter(chapter.id)">编辑</el-button>
             <el-button type="text" @click="removeChapterById(chapter.id)">删除</el-button>
           </span>
@@ -30,7 +30,7 @@
               </el-tag>
               <span class="acts">
                 <el-tag v-if="video.free" size="mini" type="success">{{ '免费观看' }}</el-tag>
-                <el-button type="text">编辑</el-button>
+                <el-button type="text" @click="editVideo(chapter.id, video.id)">编辑</el-button>
                 <el-button type="text">删除</el-button>
               </span>
             </p>
@@ -42,7 +42,12 @@
     <!-- 章节表单对话框 -->
     <chapter-form ref="chapterForm" />
 
-    <!-- 课时表单对话框 TODO -->
+    <template>
+      <div>
+        <!-- 课时表单对话框 -->
+        <video-form ref="videoForm" />
+      </div>
+    </template>
 
     <div style="text-align:center">
       <el-button type="primary" @click="prev()">上一步</el-button>
@@ -54,10 +59,12 @@
 <script>
 import chapterApi from '@/api/chapter'
 import ChapterForm from '@/views/course/components/Chapter/Form'
+import VideoForm from '@/views/course/components/Video/Form'
+import videoApi from '@/api/video'
 
 export default {
   // 注册组件
-  components: { ChapterForm },
+  components: { ChapterForm, VideoForm },
   data() {
     return {
       chapterList: [] // 章节嵌套列表
@@ -99,12 +106,40 @@ export default {
         }
       })
     },
+
     // 添加章节
     addChapter() {
       this.$refs.chapterForm.open()
     },
+
     editChapter(chapterId) {
       this.$refs.chapterForm.open(chapterId)
+    },
+
+    // 添加课时
+    addVideo(chapterId) {
+      this.$refs.videoForm.open(chapterId)
+    },
+
+    editVideo(chapterId, videoId) {
+      this.$refs.videoForm.open(chapterId, videoId)
+    },
+
+    removeVideoById(videoId) {
+      this.$confirm('此操作将永久删除该课时, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        return videoApi.removeById(videoId)
+      }).then(response => {
+        this.fetchNodeList()
+        this.$message.success(response.message)
+      }).catch((response) => {
+        if (response === 'cancel') {
+          this.$message.info('取消删除')
+        }
+      })
     }
   }
 }
