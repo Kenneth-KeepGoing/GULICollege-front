@@ -48,7 +48,7 @@
       </el-table-column>
       <el-table-column label="头像" width="100" align="center">
         <template slot-scope="scope">
-          <img :src="scope.row.avatar" alt="scope.row.avatar" style="width:50px;height:50px">
+          <img :src="scope.row.avatar" alt="scope.row.avatar" style="width:70px;height:70px">
         </template>
       </el-table-column>
       <el-table-column prop="name" label="名称" width="80" align="center"/>
@@ -94,7 +94,7 @@ export default {
       list: [], // 讲师列表
       total: 0, // 数据总数
       page: 1, // 页码
-      limit: 5, // 每页数据量
+      limit: 10, // 每页数据量
       searchObj: {}, // 查询对象
       multipleSelection: []
     }

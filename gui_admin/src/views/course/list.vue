@@ -50,7 +50,7 @@
     </el-form>
 
     <!-- 表格 -->
-    <el-table :data="list" border stripe>
+    <el-table :data="list" :header-cell-style="{textAlign: 'center'}" border stripe>
 
       <el-table-column label="#" width="50" align="center">
         <template slot-scope="scope">
@@ -58,7 +58,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="封面" width="200" align="center">
+      <el-table-column label="封面" width="250" align="center">
         <template slot-scope="scope">
           <img :src="scope.row.cover" alt="scope.row.title" width="100%">
         </template>
@@ -76,12 +76,12 @@
           </p>
         </template>
       </el-table-column>
-      <el-table-column label="讲师" width="100" align="center">
+      <el-table-column label="讲师" width="120" align="center">
         <template slot-scope="scope">
           {{ scope.row.teacherName }}
         </template>
       </el-table-column>
-      <el-table-column label="价格(元)" width="100" align="center" >
+      <el-table-column label="价格(元)" width="120" align="center" >
         <template slot-scope="scope">
           <!-- {{ typeof '0' }}  {{ typeof 0 }} {{ '0' == 0 }} -->
           <!-- {{ typeof scope.row.price }}
@@ -97,7 +97,7 @@
           <el-tag v-else>{{ scope.row.price }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="status" label="课程状态" width="100" align="center" >
+      <el-table-column prop="status" label="课程状态" width="120" align="center" >
         <template slot-scope="scope">
           <el-tag :type="scope.row.status === 'Draft' ? 'warning' : 'success'">{{ scope.row.status === 'Draft' ? '未发布' : '已发布' }}</el-tag>
         </template>

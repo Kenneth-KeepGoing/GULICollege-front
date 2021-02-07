@@ -44,6 +44,7 @@ export default {
         this.$parent.active = 3
         this.$message.success(response.message)
       })
+      this.$router.push({ path: '/course' })
     },
     // 获取课程发布信息
     fetchCoursePublishById(id) {
