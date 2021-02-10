@@ -8,7 +8,7 @@
         </h4>
         <ul class="of flink-list">
           <li>
-            <a href="http://39.108.236.154/" title="Kenneth's Blog" target="_blank">Kenneth's Blog</a>
+            <a href="https://www.kenneth.net.cn/" title="Kenneth's Blog" target="_blank">Kenneth's Blog</a>
           </li>
         </ul>
         <div class="clear"/>
@@ -17,7 +17,7 @@
         <section class="fl col-7">
           <section class="mr20">
             <section class="b-f-link">
-              <a href="http://39.108.236.154/" title="关于我们" target="_blank">关于我们</a>|
+              <a href="https://www.kenneth.net.cn/" title="关于我们" target="_blank">关于我们</a>|
               <a href="#" title="联系我们" target="_blank">联系我们</a>|
               <a href="#" title="帮助中心" target="_blank">帮助中心</a>|
               <a href="#" title="资源下载" target="_blank">资源下载</a>|
