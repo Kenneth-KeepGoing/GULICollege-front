@@ -10,7 +10,7 @@
           :style="'background: ' + topBannerAd.color"
           class="swiper-slide">
           <a target="_blank" href="/">
-            <img :src="topBannerAd.imageUrl" :alt="topBannerAd.title">
+            <img :src="topBannerAd.imageUrl" :alt="topBannerAd.title" width="1200px" height="480px">
           </a>
         </div>
       </div>
