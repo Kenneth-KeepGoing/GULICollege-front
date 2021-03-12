@@ -2,21 +2,12 @@
 
   <div>
     <!-- 幻灯片 开始 -->
-    <div v-swiper:mySwiper="swiperOption">
-      <div class="swiper-wrapper">
-        <div
-          v-for="topBannerAd in topBannerAdList"
-          :key="topBannerAd.id"
-          :style="'background: ' + topBannerAd.color"
-          class="swiper-slide">
-          <a target="_blank" href="/">
-            <img :src="topBannerAd.imageUrl" :alt="topBannerAd.title">
-          </a>
-        </div>
-      </div>
-      <div class="swiper-pagination swiper-pagination-white"/>
-      <div slot="button-prev" class="swiper-button-prev swiper-button-white"/>
-      <div slot="button-next" class="swiper-button-next swiper-button-white"/>
+    <div class="block" style="width: 1230px;margin: 20px auto">
+      <el-carousel height="600px" >
+        <el-carousel-item v-for="topBannerAd in topBannerAdList" :key="topBannerAd.id">
+          <a :href="topBannerAd.linkUrl" target="_blank"><img :src="topBannerAd.imageUrl" :alt="topBannerAd.title" class="adClass"></a>
+        </el-carousel-item>
+      </el-carousel>
     </div>
     <!-- 幻灯片 结束 -->
 
